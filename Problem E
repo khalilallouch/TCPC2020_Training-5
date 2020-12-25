@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+#define ll long long 
+const ll mod=1e9+7;
+const int maxn=1e6+300;
+using namespace std;
+ 
+int main() 
+{ 
+   #ifndef ONLINE_JUDGE
+      freopen("input.txt","r",stdin);
+    #endif
+   ll n;
+   cin>>n;
+   vector<ll> mys;
+   vector<ll> v;
+   for(ll d=1;d<=sqrt(n);d++)
+   {
+   	if(n%d==0)
+   	{
+   		v.push_back(d);
+   		if(d!=n/d)v.push_back(n/d);
+	   }
+   }
+   for(int i=0;i<v.size();i++)
+   {
+   	    ll x= (2+((ll)(n/v[i])-1)*v[i])*(n/v[i])/2;
+   	    mys.push_back(x);
+   }
+   sort(mys.begin(),mys.end());
+   for(int i=0;i<mys.size();i++)cout<<mys[i]<<" ";
+}
