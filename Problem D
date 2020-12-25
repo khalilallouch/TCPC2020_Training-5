@@ -1,0 +1,30 @@
+int main()
+{
+ ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+ cout.precision(30);
+     int n,k;
+     cin>>n>>k;
+     int mini=pow(10,9);
+     int divi,modi;
+     for(int d=1;d<=n;d++)
+     {
+         if(n%d==0)
+         {
+             divi=max(d,n/d);
+             modi=min(d,n/d);
+             if(modi<k)
+             {
+             mini=min(mini,divi*k+modi);
+             }
+             if(divi<k)
+             {
+             mini=min(mini,modi*k+divi);
+             }
+         }
+     }
+     cout<<mini;
+ 
+ 
+ 
+return(0);
+}
