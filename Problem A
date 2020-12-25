@@ -1,0 +1,14 @@
+int main() {
+  double t,a,b,r,d;
+  cin>>t;
+  while(t--){
+    cin>>a>>b>>r>>d;
+    d=d*acos(-1.0)/180;
+    if(d>=atan(b/(a+r)))
+        cout<<setprecision(30)<<sqrt((a+r)*(a+r)+b*b)-r<<endl;
+    else
+        cout<<setprecision(10)<<sqrt((a+r)*(a+r)+b*b)*cos(atan(b/(a+r))-d)-r<<endl;
+  }
+ 
+  return 0;
+}
