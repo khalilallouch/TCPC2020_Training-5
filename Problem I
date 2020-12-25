@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+#define N 1000000007;
+#define e 100005
+
+using namespace std;
+vector<int>v;
+vector<vector<pair<int, int>>> edges;
+int bfs(int u,int x)
+{
+        int maxi=0;
+        int suiv=u;
+        if(edges[u].size()>=1)
+        {
+        vector<pair<int,int>>::iterator itr;
+        itr=lower_bound(edges[u].begin(),edges[u].end(),make_pair(x,1));
+        if(itr==edges[u].begin())
+        {
+         return(u);
+        }
+        else if(itr==edges[u].end())
+        {
+            itr--;
+            suiv=(*itr).second;
+        }
+        else
+        {
+            v.push_back(u);
+            itr--;
+            suiv=(*itr).second;
+        }
+        return(bfs(suiv,x));
+        }
+        else
+        {
+        return(u);
+        }
+}
+bool sortbysec(const pair<int,int> &a,
+              const pair<int,int> &b)
+{
+    return (a.second < b.second);
+}
+int main()
+{
+ ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+ cout.precision(30);
+ double a,b,c;
+ cin>>a>>b>>c;
+ double sum=0;
+ double pi=acos(-1.0);
+ sum=((3*a*a*a)*sqrt(1-1/(4*pow(sin(pi/3),2))))/(12*tan(pi/3))+((4*b*b*b)*sqrt(1-1/(4*pow(sin(pi/4),2))))/(12*tan(pi/4))+((5*c*c*c)*sqrt(1-1/(4*pow(sin(pi/5),2))))/(12*tan(pi/5));
+ cout<<sum;
+
+
+
+
+return(0);
+}
