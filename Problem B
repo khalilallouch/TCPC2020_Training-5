@@ -1,0 +1,44 @@
+int main()
+{
+ ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+ cout.precision(30);
+ int n;
+ cin>>n;
+ string s;
+ cin>>s;
+ int m;
+ cin>>m;
+ string t[m];
+ for(int i=0;i<m;i++)
+    cin>>t[i];
+ vector<int>dp[26];
+ for(int i=0;i<n;i++)
+ {
+     dp[s[i]-'a'].push_back(i+1);
+ }
+ int nb=0;
+ int a[26]={0};
+ for(int i=0;i<m;i++)
+ {
+     nb=0;
+     for(int j=0;j<26;j++)
+        a[j]=0;
+     for(int j=0;j<t[i].length();j++)
+        a[t[i][j]-'a']++;
+     for(int j=0;j<26;j++)
+     {
+         if(a[j]>0)
+         {
+             nb=max(nb,dp[j][a[j]-1]);
+         }
+     }
+     cout<<nb<<endl;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+return(0);
+}
