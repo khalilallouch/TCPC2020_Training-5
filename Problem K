@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+#define N 1000000007;
+#define e 1e18
+
+using namespace std;
+vector<int>v;
+vector<vector<pair<int, int>>> edges;
+int bfs(int u,int x)
+{
+        int maxi=0;
+        int suiv=u;
+        if(edges[u].size()>=1)
+        {
+        vector<pair<int,int>>::iterator itr;
+        itr=lower_bound(edges[u].begin(),edges[u].end(),make_pair(x,1));
+        if(itr==edges[u].begin())
+        {
+         return(u);
+        }
+        else if(itr==edges[u].end())
+        {
+            itr--;
+            suiv=(*itr).second;
+        }
+        else
+        {
+            v.push_back(u);
+            itr--;
+            suiv=(*itr).second;
+        }
+        return(bfs(suiv,x));
+        }
+        else
+        {
+        return(u);
+        }
+}
+bool sortbysec(const pair<int,int> &a,
+              const pair<int,int> &b)
+{
+    return (a.second < b.second);
+}
+int main()
+{
+ ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+ cout.precision(30);
+ int t;
+ cin>>t;
+ while(t--)
+ {
+ int n;
+ cin>>n;
+ int a[n];
+ int b[n];
+ for(int i=0;i<n;i++)
+    cin>>a[i]>>b[i];
+ long long x=pow(10,18);
+ long long dp[n][3];
+  for(int i=0;i<n;i++)
+ {
+     dp[i][1]=x;
+     dp[i][0]=x;
+     dp[i][2]=x;
+ }
+ dp[0][0]=0;
+ dp[0][1]=b[0];
+ dp[0][2]=2*b[0];
+ for(int i=1;i<n;i++)
+    {
+    for(int j=0;j<=2;j++)
+        {
+            for(int k=0;k<=2;k++)
+            {
+            if((a[i]+j)!=(a[i-1]+k))
+                dp[i][j]=min(dp[i][j],dp[i-1][k]+b[i]*j);
+            }
+        }
+    }
+ cout<<min(min(dp[n-1][0],dp[n-1][1]),dp[n-1][2])<<endl;
+
+ }
+
+return(0);
+}
