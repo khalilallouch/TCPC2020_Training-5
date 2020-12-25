@@ -1,0 +1,9 @@
+int main() {
+  long long t,a,b,r,n,d;
+ 
+    cin>>n>>r;
+    cout<<setprecision(30)<< (sin(PI/n)/(1-sin(PI/n)))*r<<endl;
+ 
+ 
+  return 0;
+}
